@@ -21,8 +21,11 @@ export default function Hiro() {
       <div className="absolute top-1/2 left-0 z-0 hidden w-screen -translate-y-1/2 py-4 pointer-events-none md:block">
         <Marquee direction="right" speed={50} gradient={false}>
           <span 
-            className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-16 text-transparent"
-            style={{ WebkitTextStroke: "1px #000" }}
+            className="text-[30vw] leading-none font-bold uppercase tracking-tighter mr-16 text-transparent"
+            style={{ WebkitTextStroke: "1px #000",
+
+              
+             }}
           >
             FRONTEND DEVELOPER &nbsp;&nbsp;
           </span>
@@ -34,7 +37,7 @@ export default function Hiro() {
       ========================================== */}
       <div className="absolute top-[43%] left-0 z-0 flex w-screen -translate-y-1/2 flex-col py-4 pointer-events-none md:hidden">
         {/* Baris Atas: Frontend ke Kanan */}
-        <Marquee direction="right" speed={40} gradient={false}>
+        <Marquee direction="left" speed={40} gradient={false}>
           <span 
             className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
             style={{ WebkitTextStroke: "1px #000" }}
@@ -42,6 +45,17 @@ export default function Hiro() {
             FRONTEND &nbsp;&nbsp;
           </span>
         </Marquee>
+
+        <Marquee direction="right" speed={40} gradient={false}>
+          <span 
+            className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
+            style={{ WebkitTextStroke: "1px #000" }}
+          >
+            FRONTEND developer &nbsp;&nbsp; &nbsp;&nbsp;
+          </span>
+        </Marquee>
+
+        <br />
         
         {/* Baris Bawah: Developer ke Kiri */}
         <Marquee direction="left" speed={40} gradient={false}>

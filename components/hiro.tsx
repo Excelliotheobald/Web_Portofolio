@@ -10,16 +10,19 @@ export default function Hiro() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden text-neutral-900"
+      className="relative min-h-screen w-full overflow-hidden  text-neutral-900"
     >
       {/* Background Grid Modern */}
-      <div className="absolute inset-0 z-0" />
+      <div className="absolute inset-0 z-0 " />
 
-      {/* Teks Marquee Full Width ke ujung layar (Dikeluarkan dari container max-w-7xl) */}
-      <div className="absolute top-1/2 left-0 z-0 w-screen -translate-y-1/2 py-4 pointer-events-none">
+      {/* =========================================
+          1. DESKTOP VIEW (Teks 1 Baris Bergerak Kanan)
+          Hanya muncul di layar sedang ke atas (md)
+      ========================================== */}
+      <div className="absolute top-1/2 left-0 z-0 hidden w-screen -translate-y-1/2 py-4 pointer-events-none md:block">
         <Marquee direction="right" speed={50} gradient={false}>
           <span 
-            className="text-[35vw] leading-none font-black uppercase tracking-tighter mr-16 text-transparent"
+            className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-16 text-transparent"
             style={{ WebkitTextStroke: "1px #000" }}
           >
             FRONTEND DEVELOPER &nbsp;&nbsp;
@@ -27,6 +30,33 @@ export default function Hiro() {
         </Marquee>
       </div>
 
+      {/* =========================================
+          2. MOBILE VIEW (Teks 2 Baris Berlawanan Arah)
+          Hanya muncul di layar HP (block md:hidden)
+      ========================================== */}
+      <div className="absolute top-1/2 left-0 z-0 flex w-screen -translate-y-1/2 flex-col py-4 pointer-events-none md:hidden">
+        {/* Baris Atas: Frontend ke Kanan */}
+        <Marquee direction="right" speed={40} gradient={false}>
+          <span 
+            className="text-[24vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
+            style={{ WebkitTextStroke: "1px #000" }}
+          >
+            FRONTEND &nbsp;&nbsp;
+          </span>
+        </Marquee>
+        
+        {/* Baris Bawah: Developer ke Kiri */}
+        <Marquee direction="left" speed={40} gradient={false}>
+          <span 
+            className="text-[24vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
+            style={{ WebkitTextStroke: "1px #000" }}
+          >
+            DEVELOPER &nbsp;&nbsp;
+          </span>
+        </Marquee>
+      </div>
+
+      {/* Konten Utama */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-6 py-8 lg:px-8">
         
         {/* Main Canvas */}
@@ -36,8 +66,8 @@ export default function Hiro() {
             src={excl}
             alt="Excellio Character"
             priority
-             className="relative z-10 w-lg object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)] 
-             transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 sm:w-80 md:w-96 lg:w-xl"
+            // Perbaikan kelas Tailwind agar standar dan tidak error
+            className="relative z-10 w-72 object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 sm:w-80 md:w-105 lg:w-125"
           />
         </div>
 

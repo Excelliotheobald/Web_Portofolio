@@ -10,14 +10,13 @@ export default function Hiro() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden  text-neutral-900"
+      className="relative min-h-screen w-full overflow-hidden text-neutral-900"
     >
       {/* Background Grid Modern */}
       <div className="absolute inset-0 z-0 " />
 
       {/* =========================================
           1. DESKTOP VIEW (Teks 1 Baris Bergerak Kanan)
-          Hanya muncul di layar sedang ke atas (md)
       ========================================== */}
       <div className="absolute top-1/2 left-0 z-0 hidden w-screen -translate-y-1/2 py-4 pointer-events-none md:block">
         <Marquee direction="right" speed={50} gradient={false}>
@@ -32,13 +31,12 @@ export default function Hiro() {
 
       {/* =========================================
           2. MOBILE VIEW (Teks 2 Baris Berlawanan Arah)
-          Hanya muncul di layar HP (block md:hidden)
       ========================================== */}
-      <div className="absolute top-1/2 left-0 z-0 flex w-screen -translate-y-1/2 flex-col py-4 pointer-events-none md:hidden">
+      <div className="absolute top-[43%] left-0 z-0 flex w-screen -translate-y-1/2 flex-col py-4 pointer-events-none md:hidden">
         {/* Baris Atas: Frontend ke Kanan */}
         <Marquee direction="right" speed={40} gradient={false}>
           <span 
-            className="text-[24vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
+            className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
             style={{ WebkitTextStroke: "1px #000" }}
           >
             FRONTEND &nbsp;&nbsp;
@@ -48,7 +46,7 @@ export default function Hiro() {
         {/* Baris Bawah: Developer ke Kiri */}
         <Marquee direction="left" speed={40} gradient={false}>
           <span 
-            className="text-[24vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
+            className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
             style={{ WebkitTextStroke: "1px #000" }}
           >
             DEVELOPER &nbsp;&nbsp;
@@ -66,8 +64,8 @@ export default function Hiro() {
             src={excl}
             alt="Excellio Character"
             priority
-            // Perbaikan kelas Tailwind agar standar dan tidak error
-            className="relative z-10 w-72 object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 sm:w-80 md:w-105 lg:w-125"
+            // Perbaikan kelas ukuran gambar & penambahan efek active: untuk HP
+            className="relative z-10 w-[80vw] sm:w-105 md:w-125 lg:w-160 object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 active:translate-y-2 active:-rotate-2"
           />
         </div>
 
@@ -78,7 +76,7 @@ export default function Hiro() {
           <div className="flex items-start">
             <Link
               href="#about"
-              className="group relative flex h-20 w-full items-center justify-between border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 md:w-auto"
+              className="group relative flex h-20 w-full items-center justify-between border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 active:bg-yellow-400 active:text-neutral-900 md:w-auto"
               aria-label="Go to About Section"
             >
               <span className="font-mono text-sm font-bold uppercase tracking-widest">
@@ -87,7 +85,7 @@ export default function Hiro() {
               <ArrowDownRight
                 size={28}
                 strokeWidth={2.5}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1 group-active:translate-x-1 group-active:translate-y-1"
               />
             </Link>
           </div>

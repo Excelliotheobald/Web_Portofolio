@@ -4,8 +4,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes cardUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-up {
+  animation: cardUp .45s cubic-bezier(.22,1,.36,1);
+}
+
 html {
-  @apply scroll-smooth;
+   scroll-behavior: auto;
 }
 
 @theme inline {

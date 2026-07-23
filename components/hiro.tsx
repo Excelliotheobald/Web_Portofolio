@@ -10,26 +10,22 @@ export default function Hiro() {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const sectionRef = useRef(null);
 
-  // Fungsi untuk melacak pergerakan mouse (khusus Desktop)
   const handleMouseMove = (e) => {
     if (!sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width; // nilai 0 sampai 1
-    const y = (e.clientY - rect.top) / rect.height; // nilai 0 sampai 1
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
     setMousePos({ x, y });
   };
-
-  // Array kata-kata untuk efek animasi staggered
-  const headingText = ["Nama", "ku", "Muhammad", "Excellio"];
 
   return (
     <section
       id="home"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen w-full overflow-hidden  text-neutral-900"
+      className="relative w-full overflow-hidden bg-white text-neutral-900"
     >
-      {/* CSS untuk Animasi ReactBits Style (BlurIn & Floating) */}
+      {/* CSS Animasi */}
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes blurIn {
@@ -43,7 +39,7 @@ export default function Hiro() {
           }
           @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
           }
           .animate-float {
             animation: float 6s ease-in-out infinite;
@@ -51,13 +47,10 @@ export default function Hiro() {
         `
       }} />
 
-      {/* Background Grid Modern */}
-      <div className="absolute inset-0 z-0" />
+      {/* Background Grid Modern (Dikembalikan) */}
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-      {/* Dynamic Mouse Glow (Mengikuti Kursor di Desktop) */}
-      
-
-      {/* Parallax Outline Text (Bergerak mengikuti mouse) */}
+      {/* Parallax Outline Text (Desktop Only) */}
       <div 
         className="absolute top-1/2 right-0 z-0 hidden select-none text-[25vw] font-black uppercase tracking-tighter text-transparent pointer-events-none md:block"
         style={{ 
@@ -70,56 +63,57 @@ export default function Hiro() {
       </div>
 
       {/* Konten Utama */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-6 py-8 lg:px-8">
+      {/* Menggunakan min-h-[100dvh] agar tidak terpotong oleh UI browser di HP */}
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-7xl flex-col justify-between px-6 py-6 lg:px-8 lg:py-8">
         
         {/* Main Canvas */}
-        <div className="flex flex-1 flex-col items-center justify-center gap-12 pt-24 pb-8 md:flex-row md:items-center md:justify-between md:gap-8">
+        <div className="flex flex-1 flex-col items-center justify-center gap-8 pt-16 pb-4 md:flex-row md:items-center md:justify-between md:gap-8 md:pt-24">
           
-          {/* KIRI: Teks dengan Animasi Staggered */}
+          {/* KIRI: Teks */}
           <div className="text-center md:text-left max-w-xl">
+            {/* "Hallo dunia nama ku" digabung jadi satu kalimat pengantar */}
             <p 
-              className="font-mono text-sm uppercase tracking-[0.3em] text-neutral-500 mb-4 animate-blur-in" 
+              className="font-mono text-sm uppercase tracking-[0.2em] text-neutral-500 mb-3 animate-blur-in" 
               style={{ animationDelay: '0.1s' }}
             >
-              Hallo dunia
+              Hallo dunia, nama ku
             </p>
             
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-neutral-900 leading-[1.1]">
-              {headingText.map((word, i) => (
-                <span 
-                  key={i} 
-                  className={`animate-blur-in ${word === "Excellio" ? "text-yellow-400" : "text-neutral-900"}`} 
-                  style={{ animationDelay: `${0.3 + i * 0.15}s` }}
-                >
-                  {word}&nbsp;
-                </span>
-              ))}
+            {/* Nama Besar */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-neutral-900 leading-[1.05]">
+              <span className="animate-blur-in inline-block" style={{ animationDelay: '0.3s' }}>
+                Muhammad
+              </span>{" "}
+              <br className="md:hidden" /> {/* Pindah baris di HP agar tidak terlalu lebar */}
+              <span className="animate-blur-in inline-block text-yellow-400" style={{ animationDelay: '0.5s' }}>
+                Excellio
+              </span>
             </h1>
 
             <p 
-              className="mt-6 text-base sm:text-lg text-neutral-600 max-w-md mx-auto md:mx-0 animate-blur-in" 
-              style={{ animationDelay: '1s' }}
+              className="mt-5 text-base sm:text-lg text-neutral-600 max-w-md mx-auto md:mx-0 animate-blur-in" 
+              style={{ animationDelay: '0.7s' }}
             >
               PPLG Student From SMK Negeri 8 Semarang
             </p>
           </div>
 
-          {/* KANAN: Gambar dengan Animasi Float */}
+          {/* KANAN: Gambar */}
           <div className="relative flex items-center justify-center animate-float">
             <Image
               src={excl}
               alt="Excellio Character"
               priority
-              // Efek hover & active tetap dipertahankan
-              className="relative z-10 w-[70vw] sm:w-[380px] md:w-[400px] lg:w-[600px] object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 active:translate-y-2 active:-rotate-2"
+              // BATAS TINGGI MAXIMAL di HP (35vh) agar tombol di bawah tidak ketiban
+              className="relative z-10 w-auto max-h-[35vh] sm:max-h-screen md:w-[400px] lg:w-[500px] object-contain drop-shadow-[10px_10px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 active:translate-y-2 active:-rotate-2"
             />
           </div>
         </div>
 
-        {/* Footer Layout (Dengan animasi muncul tertunda) */}
+        {/* Footer Layout */}
         <footer 
           className="grid w-full grid-cols-1 gap-4 border-t-2 border-neutral-900 pt-4 md:grid-cols-2 md:gap-8 md:pt-6 animate-blur-in"
-          style={{ animationDelay: '1.2s' }}
+          style={{ animationDelay: '0.9s' }}
         >
           <div className="flex items-start">
             <Link

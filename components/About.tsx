@@ -13,7 +13,7 @@ export default function About() {
 
 
         animationDuration={1}
-        ease="back.inOut(1)"
+        ease="back.inOut(2)"
         scrollStart="center bottom+=50%"
         scrollEnd="bottom bottom-=50%"
         stagger={0.3}

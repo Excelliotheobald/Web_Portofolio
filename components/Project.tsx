@@ -39,12 +39,11 @@ export default function Project() {
         {/* Heading */}
         <div className="mb-16 text-center md:mb-20">
           <p className="text-3xl font-bold uppercase tracking-[0.2em] text-neutral-900 md:text-6xl md:tracking-[0.3em] md:font-black">
-            Selected Works
+            Selected Project
           </p>
 
           <p className="mx-auto mt-6 max-w-2xl text-neutral-500 text-sm md:text-base">
-            A collection of projects I've designed and built while learning web
-            development.
+            Ini adalah project yang telah saya pilih untuk saya tampilkan di portofolio
           </p>
         </div>
 

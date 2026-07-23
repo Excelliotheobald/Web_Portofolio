@@ -1,5 +1,6 @@
 "use client";
 
+import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import excl from "../public/excel-no-bg.png";
@@ -78,11 +79,40 @@ export default function Hiro() {
         </div>
 
         {/* Scroll Indicator di bawah sendiri */}
-        <div className="fade-up absolute bottom-8 left-1/2 -translate-x-1/2" style={{ animationDelay: '0.6s' }}>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-            [ Scroll to Discover ]
-          </span>
-        </div>
+        <div
+  className="fade-up absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-5"
+  style={{ animationDelay: "0.6s" }}
+>
+  <a
+    href="https://github.com/Excelliotheobald"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="GitHub"
+    className="text-neutral-500 transition-all duration-300 hover:-translate-y-1 hover:text-neutral-900"
+  >
+    <FaGithub size={22} />
+  </a>
+
+  <a
+    href="https://instagram.com/excel.halilintar"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="text-neutral-500 transition-all duration-300 hover:-translate-y-1 hover:text-yellow-400"
+  >
+    <FaInstagram size={22} />
+  </a>
+
+  <a
+    href="https://wa.me/628982115403"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+    className="text-neutral-500 transition-all duration-300 hover:-translate-y-1 hover:text-green-500"
+  >
+    <FaWhatsapp size={22} />
+  </a>
+</div>
 
       </div>
     </section>

@@ -52,12 +52,14 @@ export default function Navbar() {
         </ul>
 
         {/* Tombol Contact Desktop */}
-        <Link 
-          href="#contact" 
-          className="hidden border-2 border-neutral-900 px-5 py-2 font-mono text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-200 hover:bg-neutral-900 hover:text-white md:block"
-        >
-          Contact
-        </Link>
+       <a
+  href="https://wa.me/628982115403?text=Halo%20Excellio,%20saya%20tertarik%20dengan%20portofolio%20Anda."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden border-2 border-neutral-900 px-5 py-2 font-mono text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-200 hover:bg-neutral-900 hover:text-white md:block"
+>
+  Contact
+</a>
 
         {/* Tombol Burger Mobile */}
         <button

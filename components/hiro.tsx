@@ -1,143 +1,89 @@
 "use client";
 
-import { useState, useRef } from "react";
 import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import excl from "../public/excel-no-bg.png";
 import Link from "next/link";
 
 export default function Hiro() {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const sectionRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
-  };
-
   return (
     <section
       id="home"
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
       className="relative w-full overflow-hidden text-neutral-900"
     >
-      {/* CSS Animasi */}
+      {/* CSS Animasi Sederhana (Hanya Fade Up) */}
       <style dangerouslySetInnerHTML={{
         __html: `
-          @keyframes blurIn {
-            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
-            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
           }
-          .animate-blur-in {
+          .fade-up {
             opacity: 0;
-            display: inline-block;
-            animation: blurIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-          }
-          .animate-float {
-            animation: float 6s ease-in-out infinite;
+            animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
           }
         `
       }} />
 
-      {/* Background Grid Modern (Dikembalikan) */}
-      <div className="absolute inset-0 z-0" />
-
-      {/* Parallax Outline Text (Desktop Only) */}
-      <div 
-        className="absolute top-1/2 right-0 z-0 hidden select-none text-[25vw] font-black uppercase tracking-tighter text-transparent pointer-events-none md:block"
-        style={{ 
-          WebkitTextStroke: "1px #e5e5e5",
-          transform: `translate(${(mousePos.x - 0.5) * -40}px, ${(mousePos.y - 0.5) * -40}px)`,
-          transition: 'transform 0.2s ease-out'
-        }}
-      >
-        2024
-      </div>
-
-      {/* Konten Utama */}
-      {/* Menggunakan min-h-[100dvh] agar tidak terpotong oleh UI browser di HP */}
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-7xl flex-col justify-between px-6 py-6 lg:px-8 lg:py-8">
+      {/* Konten Utama: Flex column di HP, Flex row di Desktop */}
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col items-center justify-center px-6 py-10 lg:px-8">
         
-        {/* Main Canvas */}
-        <div className="flex flex-1 flex-col items-center justify-center gap-8 pt-16 pb-4 md:flex-row md:items-center md:justify-between md:gap-8 md:pt-24">
+        <div className="flex w-full flex-col items-center gap-10 md:flex-row md:justify-between md:gap-4">
           
           {/* KIRI: Teks */}
-          <div className="text-center md:text-left max-w-xl">
-            {/* "Hallo dunia nama ku" digabung jadi satu kalimat pengantar */}
-            <p 
-              className="font-mono text-sm uppercase tracking-[0.2em] text-neutral-500 mb-3 animate-blur-in" 
-              style={{ animationDelay: '0.1s' }}
-            >
+          <div className="fade-up max-w-xl text-center md:text-left" style={{ animationDelay: '0.1s' }}>
+            <p className="font-mono text-sm uppercase tracking-[0.2em] text-neutral-500 mb-4">
               Hallo dunia, nama ku
             </p>
             
-            {/* Nama Besar */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-neutral-900 leading-[1.05]">
-              <span className="animate-blur-in inline-block" style={{ animationDelay: '0.3s' }}>
-                Muhammad
-              </span>{" "}
-              <br className="md:hidden" /> {/* Pindah baris di HP agar tidak terlalu lebar */}
-              <span className="animate-blur-in inline-block stroke-3 stroke-black text-yellow-400" style={{ animationDelay: '0.5s' }}>
-                Excellio
-              </span>
+              Muhammad <br className="md:hidden" />
+              <span className="text-yellow-400">Excellio</span>
             </h1>
 
-            <p 
-              className="mt-5 text-base sm:text-lg text-neutral-600 max-w-md mx-auto md:mx-0 animate-blur-in" 
-              style={{ animationDelay: '0.7s' }}
-            >
+            <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-md mx-auto md:mx-0">
               PPLG Student From SMK Negeri 8 Semarang
             </p>
+
+            {/* Tombol CTA (Call to Action) */}
+            <div className="mt-8 flex justify-center md:justify-start">
+              <Link
+                href="#project"
+                className="group flex h-14 w-auto items-center justify-center gap-2 border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 md:h-16"
+                aria-label="Go to Project Section"
+              >
+                <span className="font-mono text-sm font-bold uppercase tracking-widest">
+                  Explore Me
+                </span>
+                <ArrowDownRight
+                  size={22}
+                  strokeWidth={2.5}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+                />
+              </Link>
+            </div>
           </div>
 
           {/* KANAN: Gambar */}
-          <div className="relative flex items-center justify-center animate-float">
+          <div className="fade-up relative flex items-center justify-center" style={{ animationDelay: '0.3s' }}>
             <Image
               src={excl}
               alt="Excellio Character"
               priority
-              // BATAS TINGGI MAXIMAL di HP (35vh) agar tombol di bawah tidak ketiban
-              className="relative z-10 w-auto max-h-[35vh] sm:max-h-screen md:w-100 lg:w-250 object-contain drop-shadow-[10px_10px_0px_rgba(0,0,0,1)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-2 active:translate-y-2 active:-rotate-2"
+              // Ukuran disederhanakan agar gambar tidak terlalu dominan/keluar layout
+              className="relative z-10 h-[250px] w-auto object-contain drop-shadow-[8px_8px_0px_rgba(0,0,0,1)] sm:h-[350px] md:h-[450px] lg:h-[500px] transition-transform duration-300 hover:-translate-y-1"
             />
           </div>
+
         </div>
 
-        {/* Footer Layout */}
-        <footer 
-          className="grid w-full grid-cols-1 gap-4 border-t-2 border-neutral-900 pt-4 md:grid-cols-2 md:gap-8 md:pt-6 animate-blur-in"
-          style={{ animationDelay: '0.9s' }}
-        >
-          <div className="flex items-start">
-            <Link
-              href="#project"
-              className="group relative flex h-16 w-full items-center justify-between border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 active:bg-yellow-400 active:text-neutral-900 md:h-20 md:w-auto"
-              aria-label="Go to About Section"
-            >
-              <span className="font-mono text-sm font-bold uppercase tracking-widest">
-                Explore Me
-              </span>
-              <ArrowDownRight
-                size={24}
-                strokeWidth={2.5}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1 group-active:translate-x-1 group-active:translate-y-1 md:size-7"
-              />
-            </Link>
-          </div>
+        {/* Scroll Indicator di bawah sendiri */}
+        <div className="fade-up absolute bottom-8 left-1/2 -translate-x-1/2" style={{ animationDelay: '0.6s' }}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
+            [ Scroll to Discover ]
+          </span>
+        </div>
 
-          <div className="flex items-end justify-start md:justify-end">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400 md:text-xs">
-              [ Scroll to Discover ]
-            </span>
-          </div>
-        </footer>
       </div>
     </section>
   );

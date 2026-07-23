@@ -34,94 +34,97 @@ const projects = [
 
 export default function Project() {
   return (
-    <main id="project" className="min-h-screen py-20 px-6 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        {/* Heading */}
-        <div className="mb-16 text-center md:mb-20">
-          <p className="text-3xl font-bold uppercase tracking-[0.2em] text-neutral-900 md:text-6xl md:tracking-[0.3em] md:font-black">
-            Selected Project
+    <main id="project" className="relative w-full py-24 md:py-32 scroll-mt-10">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        
+        {/* Header Sederhana */}
+        <div className="mb-16 text-center md:mb-24">
+          <p className="font-mono text-sm uppercase tracking-[0.2em] text-neutral-500 mb-3">
+            My Work
           </p>
-
-          <p className="mx-auto mt-6 max-w-2xl text-neutral-500 text-sm md:text-base">
-            Ini adalah project yang telah saya pilih untuk saya tampilkan di portofolio
-          </p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-neutral-900">
+            Selected <span className="text-yellow-400">Projects</span>
+          </h2>
         </div>
 
-        {/* Projects */}
-        <div className="space-y-10 md:space-y-12">
-          {projects.map((project) => (
+        {/* List Project (Grid 12 Kolom) */}
+        <div className="flex flex-col gap-16 md:gap-24">
+          {projects.map((project, index) => (
             <div
               key={project.title}
-              className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl active:scale-[0.98] md:rounded-3xl"
+              className="group grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12"
             >
-              <div className="grid md:grid-cols-2">
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden bg-neutral-100 sm:h-72 md:h-105">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              {/* Image (Bergantian posisi kiri/kanan di Desktop) */}
+              <div className={`relative overflow-hidden border-2 border-neutral-900 aspect-[16/10] md:col-span-7 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              {/* Content */}
+              <div className={`md:col-span-5 ${index % 2 === 1 ? 'md:order-1 md:text-right' : 'md:text-left'}`}>
+                {/* Nomor urut gaya editorial */}
+                <span className="font-mono text-sm text-neutral-400 mb-2 block">
+                  0{index + 1}
+                </span>
+                
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-neutral-900">
+                  {project.title}
+                </h3>
+
+                <p className="mt-4 text-base leading-relaxed text-neutral-600">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack (Tanpa kotak/pill, murni teks mono) */}
+                <div className={`mt-5 flex flex-wrap gap-3 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="font-mono text-xs uppercase tracking-widest text-neutral-400"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col justify-between p-6 md:p-8">
-                  <div>
-                    <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">
-                      {project.title}
-                    </h2>
+                {/* Tombol Aksi Tegas (Sesuai tema) */}
+                <div className={`mt-8 flex flex-wrap gap-3 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 border-2 border-neutral-900 bg-neutral-900 px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900"
+                  >
+                    <FaGithub size={14} />
+                    Code
+                  </a>
 
-                    <p className="mt-3 text-sm leading-relaxed text-neutral-600 md:mt-4 md:text-base">
-                      {project.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2 md:mt-6">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full bg-neutral-100 px-3 py-1.5 text-xs text-neutral-700 md:px-4 md:py-2 md:text-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tombol: Flex-col di HP, Flex-row di Desktop */}
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-5 py-3 text-sm text-white transition hover:bg-neutral-800 active:bg-neutral-900 sm:w-auto md:text-base"
-                    >
-                      <FaGithub size={18} />
-                      GitHub
-                    </a>
-
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-neutral-300 px-5 py-3 text-sm transition hover:bg-neutral-100 active:bg-neutral-200 sm:w-auto md:text-base"
-                    >
-                      Live Demo
-                      <ArrowUpRight size={18} />
-                    </a>
-                  </div>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 border-2 border-neutral-900 px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-200 hover:bg-neutral-900 hover:text-white"
+                  >
+                    Live Demo
+                    <ArrowUpRight size={14} strokeWidth={3} />
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="mt-20 text-center md:mt-24">
-          <p className="text-neutral-400 text-sm md:text-base">
+        {/* Footer Section */}
+        <div className="mt-24 flex flex-col items-center gap-4 border-t-2 border-neutral-900 pt-12">
+          <p className="font-mono text-sm uppercase tracking-widest text-neutral-500">
             More projects coming soon...
           </p>
         </div>
+
       </div>
     </main>
   );

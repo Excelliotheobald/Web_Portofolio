@@ -1,79 +1,120 @@
-import ScrollFloat from "./ScrollFloat";
+import LogoLoop from "@/components/LogoLoop";
+
+import {
+  SiHtml5,
+
+  SiJavascript,
+  SiNextdotjs,
+  SiReact,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiGit,
+  SiGithub,
+  SiVercel,
+  
+  SiVuedotjs,
+  SiFramer,
+ 
+  SiKrita,
+  SiPython,
+  SiLinux,
+} from "react-icons/si";
+
+const techLogos = [
+  { node: <SiHtml5 />, title: "HTML5", href: "https://developer.mozilla.org/docs/Web/HTML" },
+ 
+  { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/docs/Web/JavaScript" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
+  { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
+  { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
+  
+
+  { node: <SiVuedotjs />, title: "Vue.js", href: "https://vuejs.org" },
+  { node: <SiFramer />, title: "Framer Motion", href: "https://motion.dev" },
+  
+  { node: <SiKrita />, title: "Krita", href: "https://krita.org" },
+  { node: <SiPython />, title: "Python", href: "https://python.org" },
+  { node: <SiReact />, title: "React Native", href: "https://reactnative.dev" },
+  { node: <SiLinux />, title: "Linux", href: "https://kernel.org" },
+];
 
 export default function About() {
   return (
     <section
       id="about"
-      // Tambahan pt-28 agar tidak terpotong navbar saat di-scroll
-      className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-28 pb-30 scroll-mt-10"
+      // Bg putih bersih, menghilangkan glow dan grid yang membebani
+      className="relative w-full overflow-hidden text-neutral-900 scroll-mt-10"
     >
-      {/* Background Text / Heading */}
-      <ScrollFloat
-       animationDuration={1.8}
-  ease="power4.out"
-  scrollStart="top 100%"
-  scrollEnd="center 45%"
-  stagger={0.12}
-        containerClassName="
-          relative
-          z-10
-          mb-16
-          flex
-          justify-center
-          pointer-events-none
-          select-none
-          whitespace-nowrap
-        "
-        textClassName="
-          text-4xl
-          sm:text-8xl
-          lg:text-[170px]
-          font-black
-          uppercase
-          tracking-tight
-          leading-none
-          text-black
-        "
-      >
-        ABOUT ME
-      </ScrollFloat>
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-24 lg:px-8">
+        
+        {/* Header Section Sederhana */}
+        <div className="mb-12 text-center md:mb-16 md:text-left">
+          <p className="font-mono text-sm uppercase tracking-[0.2em] text-neutral-500 mb-3">
+            Get to know me
+          </p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-neutral-900">
+            About <span className="text-yellow-400">Me</span>
+          </h2>
+        </div>
 
-      {/* Konten Tengah */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
-        <p className="lg:text-3xl sm:text-xl leading-relaxed text-neutral-600 font-mono font-semibold">
-          Hallo! Nama saya{" "}
-          <span className="font-mono font-bold text-black">Excellio</span>, Saya bersekolah di SMKN 8 Semarang dan merupakan Frontend Developer yang berfokus pada pengembangan antarmuka web modern, responsif, dan mudah digunakan. 
-          Selain coding, saya juga tertarik pada desain grafis dan branding, serta aktif mengembangkan keterampilan melalui proyek pribadi dan mempelajari teknologi baru. 
-          Saat ini, saya sedang mencari kesempatan magang (PKL) untuk memperoleh pengalaman industri, mengembangkan kemampuan teknis, serta memahami alur kerja pengembangan perangkat lunak di lingkungan profesional. 
-          Saya memiliki semangat belajar yang tinggi, mampu bekerja sama dalam tim, dan terus meningkatkan kemampuan pemecahan masalah untuk membangun solusi digital yang andal dan bermanfaat.
-        </p>
-
-        {/* Garis Pemisah */}
-        <div className="my-12 mx-auto h-[2px] w-24 bg-neutral-300"></div>
-
-        {/* Stats */}
-        <div className="flex flex-wrap justify-center gap-10 sm:gap-16">
-          <div>
-            <h3 className="text-3xl font-black lg:text-4xl text-neutral-900">2+</h3>
-            <p className="mt-1 text-xs uppercase tracking-widest text-neutral-400">
-              Years Learning
+        {/* Konten Tengah: Grid 2 Kolom Sederhana */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
+          
+          {/* Kolom Kiri: Hook / Kalimat Pembuka */}
+          <div className="md:col-span-5">
+            <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-neutral-900">
+              Frontend Developer & siswa di SMKN 8 Semarang.
+            </h3>
+            <p className="mt-4 text-base text-neutral-600">
+              Fokus pada antarmuka web modern, responsif, dan mudah digunakan.
             </p>
           </div>
 
-          <div>
-            <h3 className="text-3xl font-black lg:text-4xl text-neutral-900">15+</h3>
-            <p className="mt-1 text-xs uppercase tracking-widest text-neutral-400">
-              Projects
+          {/* Kolom Kanan: Paragraf Cerita (Digabung agar lebih ringkas) */}
+          <div className="md:col-span-7 space-y-6 text-base leading-relaxed text-neutral-500">
+            <p>
+              Selain coding, saya juga tertarik pada desain grafis dan branding. Saya aktif mengembangkan keterampilan melalui proyek pribadi dan selalu antusias mempelajari teknologi baru.
             </p>
-          </div>
-
-          <div>
-            <h3 className="text-3xl font-black lg:text-4xl text-neutral-900">100%</h3>
-            <p className="mt-1 text-xs uppercase tracking-widest text-neutral-400">
-              Passion
+            <p>
+              Saat ini, saya sedang mencari kesempatan magang (PKL) untuk memperoleh pengalaman industri, mengembangkan kemampuan teknis, serta memahami alur kerja pengembangan perangkat lunak di lingkungan profesional.
+            </p>
+            <p className="font-semibold text-neutral-700">
+              Saya memiliki semangat belajar yang tinggi, mampu bekerja sama dalam tim, dan terus meningkatkan kemampuan pemecahan masalah untuk membangun solusi digital yang andal.
             </p>
           </div>
         </div>
+
+
+        {/* Garis Pemisah Solid Tegas (Mengikuti gaya border Hiro.tsx) */}
+    {/* Tech Stack */}
+<div className="mt-20">
+  <p className="text-center font-mono text-sm uppercase tracking-[0.25em] text-neutral-500">
+    Tech Stack
+  </p>
+
+  <div className="mt-10 h-24">
+    <LogoLoop
+      logos={techLogos}
+      speed={100}
+      direction="left"
+      logoHeight={42}
+      gap={56}
+      hoverSpeed={25}
+      scaleOnHover
+      fadeOut
+      fadeOutColor="#ffffff"
+      ariaLabel="Technology Stack"
+    />
+  </div>
+</div>
+
+       
+
+       
       </div>
     </section>
   );

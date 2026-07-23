@@ -42,7 +42,7 @@ export default function Hiro() {
             className="text-[30vw] leading-none font-black uppercase tracking-tighter mr-10 text-transparent"
             style={{ WebkitTextStroke: "1px #000" }}
           >
-            FRONTEND &nbsp;&nbsp;
+            EXCELLIO &nbsp;&nbsp;
           </span>
         </Marquee>
 
@@ -89,7 +89,7 @@ export default function Hiro() {
           {/* Kiri: Tombol Brutalis */}
           <div className="flex items-start">
             <Link
-              href="#about"
+              href="#project"
               className="group relative flex h-20 w-full items-center justify-between border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 active:bg-yellow-400 active:text-neutral-900 md:w-auto"
               aria-label="Go to About Section"
             >

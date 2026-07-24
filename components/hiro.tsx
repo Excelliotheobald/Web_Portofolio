@@ -49,7 +49,7 @@ export default function Hiro() {
             {/* Tombol CTA (Call to Action) */}
             <div className="mt-8 flex justify-center md:justify-start">
               <Link
-                href="#project"
+                href="#about"
                 className="group flex h-14 w-auto items-center justify-center gap-2 border-2 border-neutral-900 bg-neutral-900 px-6 text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900 md:h-16"
                 aria-label="Go to Project Section"
               >

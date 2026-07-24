@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import { FaFigma } from "react-icons/fa6";
 
 const projects = [
   {
@@ -17,16 +18,20 @@ const projects = [
   {
     title: "UCOY",
     description: "Aplikasi ujian yang interaktif dan aman.",
-    image: "/project2.png",
+    image1: "/79.png",
+    image2: "/69.png",
+    image3: "/81.png",
     github: "https://github.com/Excelliotheobald/PJBL_UCOY.git",
+    figma: "https://www.figma.com/proto/fDgY5Lb59aUvzrzO7t0SP1/UCOY---Ujian-Coy?node-id=1-753&starting-point-node-id=1%3A738",
     demo: "#",
     tech: ["React Native", "Express"],
   },
   {
     title: "Bexsdoors",
     description: "Website e-commerce khusus untuk pintu.",
-    image: "/project3.png",
+    image: "/bexs.png",
     github: "https://github.com/Excelliotheobald/PJBL_BEXSDOOR.git",
+    figma: "https://www.figma.com/proto/kt6KihY0ThdLmb7oUcPKcC/BexsDoor---PJBL-1?node-id=2681-4105&starting-point-node-id=2681%3A4105",
     demo: "#",
     tech: ["PHP", "Tailwind", "Blade", "JS"],
   },
@@ -54,14 +59,46 @@ export default function Project() {
               key={project.title}
               className="group grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12"
             >
-              {/* Image (Bergantian posisi kiri/kanan di Desktop) */}
-              <div className={`relative overflow-hidden border-2 border-neutral-900 aspect-[16/10] md:col-span-7 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                />
+              {/* Bingkai Gambar Utama */}
+              <div className={`relative flex overflow-hidden border-2 border-neutral-900 aspect-[16/10] md:col-span-7 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                
+                {/* Cek jika project memiliki 3 gambar (UCOY) */}
+                {project.image1 ? (
+                  <div className="flex w-full h-full ">
+                    <div className="relative w-1/3 h-full p-2">
+                      <Image
+                        src={project.image1}
+                        alt={project.title}
+                        fill
+                        className="object-contain transition-transform duration-500 ease-out group-hover:scale-90"
+                      />
+                    </div>
+                    <div className="relative w-1/3 h-full p-2">
+                      <Image
+                        src={project.image2}
+                        alt={project.title}
+                        fill
+                        className="object-contain transition-transform duration-500 ease-out group-hover:scale-90"
+                      />
+                    </div>
+                    <div className="relative w-1/3 h-full p-2 ">
+                      <Image
+                        src={project.image3}
+                        alt={project.title}
+                        fill
+                        className="object-contain  transition-transform duration-500 ease-out group-hover:scale-90"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  /* Jika project hanya memiliki 1 gambar */
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                )}
               </div>
 
               {/* Content */}
@@ -93,6 +130,16 @@ export default function Project() {
 
                 {/* Tombol Aksi Tegas (Sesuai tema) */}
                 <div className={`mt-8 flex flex-wrap gap-3 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                   <a
+                    href={project.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 border-2 border-neutral-900 bg-neutral-900 px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 hover:bg-yellow-400 hover:text-neutral-900"
+                  >
+                    <FaFigma size={14} />
+                    desain
+                  </a>
+
                   <a
                     href={project.github}
                     target="_blank"
